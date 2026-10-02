@@ -65,4 +65,4 @@ All model generation and analysis ran on QMUL's Apocrita HPC (A100 80GB, SLURM),
 
 ## Author
 
-Qi Shang ([github.com/qshang237](https://github.com/qshang237)) — PhD Candidate, Queen Mary University of London.
+Qi Shang ([github.com/qshang237](https://github.com/qshang237)) — PhD, Queen Mary University of London.
