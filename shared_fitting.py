@@ -17,6 +17,7 @@ from scipy.signal import find_peaks
 from scipy.ndimage import gaussian_filter
 from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
+from Bio import pairwise2
 import diptest
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
@@ -121,30 +122,77 @@ def mean_density_at_backbone(traj_frame_nm, bb_idx, grid):
     return total / len(coords)
 
 
-# ── superposition onto target PDB using common Cα ────────────────────────────
+# ── superposition onto target PDB via sequence-aligned common Cα ─────────────
+# Previously matched Cα atoms by comparing resSeq numbers directly (set
+# intersection of author-numbering labels). That breaks whenever the
+# ensemble's topology and the target PDB's numbering don't line up 1:1 --
+# e.g. an N-terminal offset or an unresolved internal loop on the target
+# side shifts the numbering out of registration, silently pairing the
+# wrong atoms together (confirmed to badly misalign SPNS2 against
+# 8ex5/8ex7). Fixed by finding the correspondence via actual sequence
+# alignment instead of numeric labels -- validated in
+# outputs/fig_revision/spns2_refit_v2.py before being merged in here.
+AA3TO1 = {
+    'ALA': 'A', 'ARG': 'R', 'ASN': 'N', 'ASP': 'D', 'CYS': 'C', 'GLN': 'Q',
+    'GLU': 'E', 'GLY': 'G', 'HIS': 'H', 'ILE': 'I', 'LEU': 'L', 'LYS': 'K',
+    'MET': 'M', 'PHE': 'F', 'PRO': 'P', 'SER': 'S', 'THR': 'T', 'TRP': 'W',
+    'TYR': 'Y', 'VAL': 'V', 'HSD': 'H', 'HSE': 'H', 'HSP': 'H', 'MSE': 'M',
+}
+
+
+def _ca_list(top):
+    """Ordered list of (residue, ca_atom_index) for protein residues, in
+    chain (N->C) order -- NOT keyed/sorted by resSeq number."""
+    out = []
+    for r in top.residues:
+        if not r.is_protein:
+            continue
+        ca = next((a.index for a in r.atoms if a.name == 'CA'), None)
+        if ca is not None:
+            out.append((r, ca))
+    return out
+
+
+def seqaln_common_ca(traj_top, target_top):
+    """
+    Find true residue correspondence via gapped global sequence alignment
+    (Biopython), rather than comparing author-numbering resSeq values.
+    Only aligned columns where both sides carry the same residue identity
+    are kept. This dataset's ensembles and reference PDBs are all 100%
+    sequence-identical, so this cleanly recovers the full common region,
+    correctly skipping any gaps from unresolved loops on the reference
+    side, regardless of numbering offsets.
+    """
+    traj_list   = _ca_list(traj_top)
+    target_list = _ca_list(target_top)
+    tseq = ''.join(AA3TO1.get(r.name, 'X') for r, _ in traj_list)
+    rseq = ''.join(AA3TO1.get(r.name, 'X') for r, _ in target_list)
+    aln = pairwise2.align.globalms(tseq, rseq, 2, -1, -5, -0.5,
+                                    one_alignment_only=True)[0]
+    a_t, a_r = aln.seqA, aln.seqB
+    ti = ri = 0
+    traj_idx, target_idx = [], []
+    for ct, cr in zip(a_t, a_r):
+        if ct != '-' and cr != '-' and ct == cr:
+            traj_idx.append(traj_list[ti][1])
+            target_idx.append(target_list[ri][1])
+        if ct != '-':
+            ti += 1
+        if cr != '-':
+            ri += 1
+    return np.array(traj_idx), np.array(target_idx)
+
+
 def superpose_to_target(traj, target_pdb_path):
     """
-    Superpose every frame of `traj` onto `target_pdb_path` using
-    common Cα residues only (handles missing-residue mismatches).
-    Modifies traj in-place.
+    Superpose every frame of `traj` onto `target_pdb_path` using a
+    sequence-aligned common-Cα correspondence (handles missing-residue
+    and numbering-offset mismatches). Modifies traj in-place.
     """
     target = md.load(target_pdb_path)
-
-    def ca_resmap(top):
-        m = {}
-        for atom in top.atoms:
-            if atom.name == 'CA':
-                m[atom.residue.resSeq] = atom.index
-        return m
-
-    traj_ca_map   = ca_resmap(traj.topology)
-    target_ca_map = ca_resmap(target.topology)
-    common_res    = sorted(set(traj_ca_map) & set(target_ca_map))
-    if len(common_res) < 10:
-        raise ValueError(f'Only {len(common_res)} common Cα residues')
-
-    traj_idx   = np.array([traj_ca_map[r]   for r in common_res])
-    target_idx = np.array([target_ca_map[r] for r in common_res])
+    traj_idx, target_idx = seqaln_common_ca(traj.topology, target.topology)
+    if len(traj_idx) < 10:
+        raise ValueError(f'Only {len(traj_idx)} common Cα residues (seq-aligned)')
     traj.superpose(target, atom_indices=traj_idx, ref_atom_indices=target_idx)
     return traj
 

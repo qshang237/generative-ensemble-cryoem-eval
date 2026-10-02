@@ -1,6 +1,6 @@
 # Generative Ensemble Model Evaluation Against Experimental Cryo-EM Density Maps
 
-Do generative conformational-ensemble models actually sample the functional states that cryo-EM sees? This project benchmarks three ensemble-generation approaches, **BioEmu**, **AlphaFlow**, and **MSA subsampling**, directly against experimentally determined cryo-EM density maps, rather than against molecular dynamics trajectories as most existing benchmarks do.
+This project benchmarks three ensemble-generation approaches, **BioEmu**, **AlphaFlow**, and a shallow-MSA AlphaFold2 baseline (**AF2-MSA**), directly against experimentally determined cryo-EM density maps, rather than against molecular dynamics trajectories as most existing benchmarks do. Scoring generated ensembles against deposited density and analysing their population structure lets us separately assess three properties of a generated ensemble: whether it samples conformations compatible with an experimental state (**sampling**), whether unsupervised analysis detects distinct populations within it (**detection**), and whether those populations correspond to the experimentally resolved states (**recovery**).
 
 ## Why density maps instead of MD
 
@@ -10,42 +10,40 @@ Generative models of protein conformational ensembles are usually benchmarked ag
 
 5 multi-conformation membrane transport proteins, 15 EMDB depositions, curated from 58,906 EMDB entries by filtering for single-particle cryo-EM, protein-only samples under 4 Å resolution, then grouping by UniProt ID and requiring at least 2 entries per protein:
 
-| Protein | States | Role |
+| Protein | Depositions | Role |
 |---|---|---|
-| GltPh | 3 | Genuine multi-state transport cycle |
-| SLC37A4 | 6 depositions → 2 real states | Redundant depositions from overlapping studies |
-| GPR4 | 2 | Genuine negative control (pH-driven, nearly identical states) |
-| SPNS2 | 2 | Genuine multi-state, hardest target in the dataset |
-| AUX1 | 2 depositions → 1 real state | Two labs' independent apo depositions, not a real conformational pair |
+| GltPh | 3 | Multi-state transport cycle (Outward-open, Intermediate, Inward-open) |
+| GPR4 | 2 | Same-state reproducibility control (same state, resolved at different pH) |
+| AUX1 | 2 | Same-state reproducibility control (same apo state, two independent determinations) |
+| SLC37A4 | 6 | Largest experimentally resolved transition in the dataset (outward-open vs. cytosol-open) |
+| SPNS2 | 2 | Smallest experimentally resolved transition in the dataset (adjacent outward-facing sub-states) |
 
 ## Method
 
-1. **Cross-validate the reference dataset first.** Before treating deposition count as ground truth, every deposited structure is scored against every experimental map using masked cross-correlation (CCmask). This is what revealed that SLC37A4's 6 depositions and AUX1's 2 depositions don't mean what their deposition counts imply.
-2. **Generate ensembles.** Up to 500 conformations per protein from each of BioEmu, AlphaFlow, and MSA subsampling (via localcolabfold, run on QMUL's Apocrita HPC).
-3. **Cluster.** GROMOS/Daura neighbour-counting, gated by Hartigan's dip test for unimodality, so the pipeline doesn't fabricate spurious clusters on ensembles that are genuinely unimodal.
+1. **Cross-validate the reference dataset first.** Before any generated ensemble is evaluated, every deposited structure within a protein is cross-compared against every other deposition's experimental map using masked cross-correlation (CCmask), superposed via a sequence-aligned common-Cα correspondence rather than by matching author-assigned residue numbers (robust to numbering offsets between structures). This establishes the experimentally anchored structural-difference scale that separates same-state controls from genuine transitions.
+2. **Generate ensembles.** Up to 500 conformations per protein from each of BioEmu, AlphaFlow, and AF2-MSA (via localcolabfold, run on QMUL's Apocrita HPC).
+3. **Cluster.** GROMOS/Daura neighbour-counting, gated by Hartigan's dip test for unimodality, so the pipeline doesn't fabricate spurious clusters on ensembles that are genuinely unimodal. The distance cutoff is chosen automatically from candidate valleys in a kernel density estimate of the pairwise-RMSD distribution, not fixed by hand.
 4. **Score.** Every conformation is scored against every experimental map with a resolution-matched, Gaussian-smoothed density-fit metric, normalised against how well the deposited structure itself fits.
 
 ## Key findings
 
-**BioEmu matched or outperformed both AlphaFlow and MSA subsampling on every protein, and its margin scaled directly with the true conformational distance between a protein's states**, not a constant offset. A clear lead on SLC37A4 and GltPh, where the real conformational change is large; narrowing to an effective tie on GPR4, where the two states are nearly structurally identical to begin with; converging with the other two models on the same low ceiling on SPNS2, the hardest target in the dataset.
+**Conformational sampling, population detection and experimental state recovery are separable properties of a generated ensemble, and do not necessarily covary.** GltPh is the case where all three align: BioEmu and AlphaFlow both produce subpopulations whose map preference matches the expected states. GPR4 and AUX1, included as same-state controls, correctly show no spurious second population under any method.
 
 <p align="center">
   <img src="results/bestfit_chimeraX/SLC37A4.png" width="500"/>
   <br/>
-  <em>Best-fitting BioEmu conformation (density_ratio 0.91) against SLC37A4's EMD-66194 density, vs. the deposited structure.</em>
+  <em>Best-fitting BioEmu conformation (density_ratio 0.92) against SLC37A4's EMD-66194 density, vs. the deposited structure.</em>
 </p>
 
-**Cross-validating the reference dataset caught two things that would have distorted every downstream comparison.** SLC37A4's six depositions are really two structural groups: within-group agreement matched or exceeded each structure's own self-fit, while agreement between the two groups dropped to 0.04–0.10. AUX1's two depositions turned out to be the same apo conformation, solved independently by two different labs (correlating at 0.81–0.83 with each other), not a second functional state at all.
+**SLC37A4 and SPNS2 show the two complementary failure modes that motivate this framework.** SLC37A4 has the largest experimentally resolved difference in the dataset, yet neither BioEmu's nor AlphaFlow's ensemble organises into separable populations, even though both methods' best-scoring frames closely match the target density. SPNS2 has the smallest resolved transition, yet two of three methods produce a detectable population split that tracks overall fit quality rather than which state is preferred.
 
 <p align="center">
   <img src="results/cross_comparison/SLC37A4_cross.png" width="420"/>
   <br/>
-  <em>SLC37A4 cross-comparison: 6 depositions resolve into 2 structurally distinct groups.</em>
+  <em>SLC37A4 cross-comparison: the six depositions resolve into two structurally distinct groups, the structural-difference scale against which the generated ensembles are evaluated.</em>
 </p>
 
-**Panel-by-panel inspection surfaced two things invisible in the summary statistics.** BioEmu's SLC37A4 ensemble correctly sampled both real states even where its own whole-chain RMSD clustering had merged them into a single cluster, meaning the density metric detected real structural heterogeneity the unsupervised clustering step missed. MSA subsampling collapsed outright on AUX1, sampling implausibly broad, unstructured conformations (pairwise RMSD up to ~70 Å, vs BioEmu's 5–25 Å), rather than merely underperforming.
-
-BioEmu's advantage traces specifically to better sampling of large-scale conformational transitions, the kind its Boltzmann-weighted training objective should reward, not a uniform improvement in general structural accuracy.
+**No method is uniformly superior across sampling, detection and recovery.** BioEmu produces the highest-scoring individual frame in every system, but this does not translate into uniformly stronger population-level recovery — its SLC37A4 ensemble fails to separate into states despite a best-frame density ratio of 0.92. AF2-MSA's most structurally diverse ensemble (AUX1, pairwise RMSD up to ~70 Å) was also its worst-fitting, showing that a broad spread of generated structures is not by itself evidence of meaningful conformational sampling.
 
 ## Repository structure
 
@@ -56,6 +54,7 @@ BioEmu's advantage traces specifically to better sampling of large-scale conform
 04_fitting_bioemu.py       # BioEmu ensemble fitting
 04_fitting_msa.py          # MSA subsampling ensemble fitting
 04_fitting_alphaflow.py    # AlphaFlow ensemble fitting
+06_per_residue_density_analysis.py  # per-residue backbone-density difference panels for best-scoring frames
 shared_fitting.py          # shared clustering / scoring / figure-generation logic
 results/                   # per-protein figures, cross-comparison matrices, best-fit structural renders
 ```
