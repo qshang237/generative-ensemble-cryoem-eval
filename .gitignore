@@ -16,3 +16,6 @@ __pycache__/
 # Job scheduler logs
 *.out
 *.err
+
+# Regenerable intermediate arrays from 07_coordinate_pca.py
+results/coordinate_pca/cache/

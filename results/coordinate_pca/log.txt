@@ -1,0 +1,220 @@
+
+===== AuxinTransporter
+  BioEmu: 390 frames, 485 Cα, clusters [390], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 421 Cα resolved in all deposited models: PC1 26.2%, PC2 8.8% (all-Cα PCA: 29.6%, 25.9%)
+      9ute (EMD-64490) at PC1 1.4 Å, PC2 -0.2 Å
+      9jdr (EMD-61397) at PC1 1.1 Å, PC2 -0.1 Å
+  AlphaFlow: 500 frames, 485 Cα, clusters [500], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 421 Cα resolved in all deposited models: PC1 10.6%, PC2 7.0% (all-Cα PCA: 22.6%, 16.3%)
+      9ute (EMD-64490) at PC1 -1.3 Å, PC2 0.3 Å
+      9jdr (EMD-61397) at PC1 -1.1 Å, PC2 0.2 Å
+  AF2-MSA: 500 frames, 485 Cα, clusters [500], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 421 Cα resolved in all deposited models: PC1 23.2%, PC2 12.7% (all-Cα PCA: 26.6%, 14.7%)
+      9ute (EMD-64490) at PC1 0.0 Å, PC2 -3.1 Å
+      9jdr (EMD-61397) at PC1 0.1 Å, PC2 -2.9 Å
+
+===== GPR4
+  BioEmu: 335 frames, 365 Cα, clusters [335], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 294 Cα resolved in all deposited models: PC1 44.5%, PC2 24.1% (all-Cα PCA: 36.0%, 21.6%)
+      8zfd (EMD-60057) at PC1 -0.0 Å, PC2 0.8 Å
+      9jvh (EMD-61839) at PC1 0.1 Å, PC2 0.8 Å
+
+===== GltPh bioemu
+  BioEmu: 486 frames, 422 Cα, clusters [409, 77], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 391 Cα resolved in all deposited models: PC1 90.9%, PC2 3.0% (all-Cα PCA: 87.9%, 3.7%)
+      9bh2 (EMD-44530) at PC1 -5.1 Å, PC2 0.1 Å
+      9bh1 (EMD-44529) at PC1 -2.5 Å, PC2 0.5 Å
+      6X12 (EMD-21986) at PC1 3.4 Å, PC2 0.5 Å
+
+===== GltPh msa
+  AF2-MSA: 500 frames, 422 Cα, clusters [412, 52, 36], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 391 Cα resolved in all deposited models: PC1 19.2%, PC2 14.8% (all-Cα PCA: 19.1%, 14.9%)
+      9bh2 (EMD-44530) at PC1 -0.1 Å, PC2 2.5 Å
+      9bh1 (EMD-44529) at PC1 -0.1 Å, PC2 2.7 Å
+      6X12 (EMD-21986) at PC1 -1.1 Å, PC2 3.1 Å
+
+===== GltPh alphaflow
+  AlphaFlow: 500 frames, 422 Cα, clusters [451, 49], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 391 Cα resolved in all deposited models: PC1 74.6%, PC2 2.5% (all-Cα PCA: 65.9%, 6.4%)
+      9bh2 (EMD-44530) at PC1 5.9 Å, PC2 0.1 Å
+      9bh1 (EMD-44529) at PC1 3.4 Å, PC2 -0.2 Å
+      6X12 (EMD-21986) at PC1 -2.5 Å, PC2 -0.0 Å
+
+===== SLC37A4 bioemu
+  BioEmu: 490 frames, 429 Cα, clusters [490], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 407 Cα resolved in all deposited models: PC1 71.3%, PC2 9.2% (all-Cα PCA: 67.6%, 9.9%)
+      21nq (EMD-67847) at PC1 0.9 Å, PC2 3.0 Å
+      9ugu (EMD-64144) at PC1 -2.9 Å, PC2 -0.7 Å
+      9ugx (EMD-64147) at PC1 -3.0 Å, PC2 -0.6 Å
+      9ws8 (EMD-66194) at PC1 -2.9 Å, PC2 -0.6 Å
+      9x95 (EMD-66660) at PC1 -3.0 Å, PC2 -0.5 Å
+      9kuy (EMD-62584) at PC1 1.0 Å, PC2 2.9 Å
+      SLC37A4 PC1 vs state preference (mean B - mean A) r = -0.50, vs fit quality (mean over 6 maps) r = -0.80, preference vs fit r = 0.82
+
+===== SLC37A4 alphaflow
+  AlphaFlow: 500 frames, 429 Cα, clusters [500], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 407 Cα resolved in all deposited models: PC1 44.4%, PC2 7.6% (all-Cα PCA: 24.3%, 13.0%)
+      21nq (EMD-67847) at PC1 -3.7 Å, PC2 -0.9 Å
+      9ugu (EMD-64144) at PC1 2.1 Å, PC2 -0.5 Å
+      9ugx (EMD-64147) at PC1 2.0 Å, PC2 -0.4 Å
+      9ws8 (EMD-66194) at PC1 2.0 Å, PC2 -0.5 Å
+      9x95 (EMD-66660) at PC1 1.9 Å, PC2 -0.4 Å
+      9kuy (EMD-62584) at PC1 -3.6 Å, PC2 -1.0 Å
+      SLC37A4 PC1 vs state preference (mean B - mean A) r = 0.99, vs fit quality (mean over 6 maps) r = 0.93, preference vs fit r = 0.96
+
+===== SLC37A4 msa
+  AF2-MSA: 500 frames, 429 Cα, clusters [353, 70, 77], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 407 Cα resolved in all deposited models: PC1 19.5%, PC2 11.7% (all-Cα PCA: 18.2%, 13.2%)
+      21nq (EMD-67847) at PC1 1.2 Å, PC2 -2.6 Å
+      9ugu (EMD-64144) at PC1 2.5 Å, PC2 -2.3 Å
+      9ugx (EMD-64147) at PC1 2.5 Å, PC2 -2.4 Å
+      9ws8 (EMD-66194) at PC1 2.4 Å, PC2 -2.4 Å
+      9x95 (EMD-66660) at PC1 2.5 Å, PC2 -2.3 Å
+      9kuy (EMD-62584) at PC1 1.4 Å, PC2 -2.6 Å
+      SLC37A4 PC1 vs state preference (mean B - mean A) r = 0.40, vs fit quality (mean over 6 maps) r = 0.68, preference vs fit r = 0.86
+
+===== SPNS2 bioemu
+  BioEmu: 462 frames, 451 Cα, clusters [369, 93], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 414 Cα resolved in all deposited models: PC1 73.7%, PC2 8.3% (all-Cα PCA: 69.7%, 9.0%)
+      8ex5 (EMD-28651) at PC1 -0.2 Å, PC2 -1.5 Å
+      8ex7 (EMD-28653) at PC1 -0.8 Å, PC2 -1.4 Å
+
+===== SPNS2 msa
+  AF2-MSA: 500 frames, 451 Cα, clusters [479, 21], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 414 Cα resolved in all deposited models: PC1 17.5%, PC2 12.3% (all-Cα PCA: 20.4%, 13.0%)
+      8ex5 (EMD-28651) at PC1 -1.7 Å, PC2 0.3 Å
+      8ex7 (EMD-28653) at PC1 -1.8 Å, PC2 0.2 Å
+
+===== GPR4 bioemu
+  BioEmu: 335 frames, 365 Cα, clusters [335], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 294 Cα resolved in all deposited models: PC1 44.5%, PC2 24.1% (all-Cα PCA: 36.0%, 21.6%)
+      8zfd (EMD-60057) at PC1 -0.0 Å, PC2 0.8 Å
+      9jvh (EMD-61839) at PC1 0.1 Å, PC2 0.8 Å
+
+===== SPNS2 alphaflow
+  AlphaFlow: 500 frames, 451 Cα, clusters [500], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 414 Cα resolved in all deposited models: PC1 21.9%, PC2 10.0% (all-Cα PCA: 26.4%, 16.6%)
+      8ex5 (EMD-28651) at PC1 2.1 Å, PC2 1.2 Å
+      8ex7 (EMD-28653) at PC1 1.7 Å, PC2 0.9 Å
+
+===== GPR4 msa
+  AF2-MSA: 500 frames, 365 Cα, clusters [500], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 294 Cα resolved in all deposited models: PC1 32.8%, PC2 17.3% (all-Cα PCA: 34.6%, 18.1%)
+      8zfd (EMD-60057) at PC1 0.4 Å, PC2 -0.1 Å
+      9jvh (EMD-61839) at PC1 0.4 Å, PC2 -0.1 Å
+
+===== GPR4 alphaflow
+  AlphaFlow: 500 frames, 365 Cα, clusters [500], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 294 Cα resolved in all deposited models: PC1 21.0%, PC2 8.8% (all-Cα PCA: 18.7%, 15.7%)
+      8zfd (EMD-60057) at PC1 1.6 Å, PC2 -0.2 Å
+      9jvh (EMD-61839) at PC1 1.6 Å, PC2 -0.1 Å
+
+===== AuxinTransporter bioemu
+  BioEmu: 390 frames, 485 Cα, clusters [390], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 421 Cα resolved in all deposited models: PC1 26.2%, PC2 8.8% (all-Cα PCA: 29.6%, 25.9%)
+      9ute (EMD-64490) at PC1 1.4 Å, PC2 -0.2 Å
+      9jdr (EMD-61397) at PC1 1.1 Å, PC2 -0.1 Å
+
+===== AuxinTransporter alphaflow
+  AlphaFlow: 500 frames, 485 Cα, clusters [500], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 421 Cα resolved in all deposited models: PC1 10.6%, PC2 7.0% (all-Cα PCA: 22.6%, 16.3%)
+      9ute (EMD-64490) at PC1 -1.3 Å, PC2 0.3 Å
+      9jdr (EMD-61397) at PC1 -1.1 Å, PC2 0.2 Å
+
+===== AuxinTransporter msa
+  AF2-MSA: 500 frames, 485 Cα, clusters [500], labels identical to saved run: True
+      MDS of RMSD matrix vs coordinate PCA, |r| PC1 1.000000, PC2 1.000000
+      PCA on 421 Cα resolved in all deposited models: PC1 23.2%, PC2 12.7% (all-Cα PCA: 26.6%, 14.7%)
+      9ute (EMD-64490) at PC1 0.0 Å, PC2 -3.1 Å
+      9jdr (EMD-61397) at PC1 0.1 Å, PC2 -2.9 Å
+figures and summary written
+figures and summary written
+figures and summary written
+figures and summary written
+figures and summary written
+--- rerun Mon Nov  2 19:56:17 UTC 2026 without deposited models
+
+===== GltPh bioemu
+  BioEmu: 486 frames, 422 Cα, clusters [409, 77], labels identical to saved run: True
+      PCA: PC1 87.9%, PC2 3.7%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== GltPh msa
+  AF2-MSA: 500 frames, 422 Cα, clusters [412, 52, 36], labels identical to saved run: True
+      PCA: PC1 19.1%, PC2 14.9%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== SLC37A4 bioemu
+  BioEmu: 490 frames, 429 Cα, clusters [490], labels identical to saved run: True
+      PCA: PC1 67.6%, PC2 9.9%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+      SLC37A4 PC1 vs state preference (mean B - mean A) r = -0.50, vs fit quality (mean over 6 maps) r = -0.80, preference vs fit r = 0.82
+
+===== GltPh alphaflow
+  AlphaFlow: 500 frames, 422 Cα, clusters [451, 49], labels identical to saved run: True
+      PCA: PC1 65.9%, PC2 6.4%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== SLC37A4 msa
+  AF2-MSA: 500 frames, 429 Cα, clusters [353, 70, 77], labels identical to saved run: True
+      PCA: PC1 18.2%, PC2 13.2%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+      SLC37A4 PC1 vs state preference (mean B - mean A) r = 0.45, vs fit quality (mean over 6 maps) r = 0.72, preference vs fit r = 0.86
+
+===== SLC37A4 alphaflow
+  AlphaFlow: 500 frames, 429 Cα, clusters [500], labels identical to saved run: True
+      PCA: PC1 24.3%, PC2 13.0%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+      SLC37A4 PC1 vs state preference (mean B - mean A) r = -0.97, vs fit quality (mean over 6 maps) r = -0.91, preference vs fit r = 0.96
+
+===== SPNS2 bioemu
+  BioEmu: 462 frames, 451 Cα, clusters [369, 93], labels identical to saved run: True
+      PCA: PC1 69.7%, PC2 9.0%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== SPNS2 alphaflow
+  AlphaFlow: 500 frames, 451 Cα, clusters [500], labels identical to saved run: True
+      PCA: PC1 26.4%, PC2 16.6%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== SPNS2 msa
+  AF2-MSA: 500 frames, 451 Cα, clusters [479, 21], labels identical to saved run: True
+      PCA: PC1 20.4%, PC2 13.0%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== GPR4 alphaflow
+  AlphaFlow: 500 frames, 365 Cα, clusters [500], labels identical to saved run: True
+      PCA: PC1 18.7%, PC2 15.7%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== GPR4 bioemu
+  BioEmu: 335 frames, 365 Cα, clusters [335], labels identical to saved run: True
+      PCA: PC1 36.0%, PC2 21.6%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== GPR4 msa
+  AF2-MSA: 500 frames, 365 Cα, clusters [500], labels identical to saved run: True
+      PCA: PC1 34.6%, PC2 18.1%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== AuxinTransporter alphaflow
+  AlphaFlow: 500 frames, 485 Cα, clusters [500], labels identical to saved run: True
+      PCA: PC1 22.6%, PC2 16.3%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== AuxinTransporter bioemu
+  BioEmu: 390 frames, 485 Cα, clusters [390], labels identical to saved run: True
+      PCA: PC1 29.6%, PC2 25.9%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+
+===== AuxinTransporter msa
+  AF2-MSA: 500 frames, 485 Cα, clusters [500], labels identical to saved run: True
+      PCA: PC1 26.6%, PC2 14.7%; agreement with MDS of the RMSD matrix |r| 1.000000, 1.000000
+figures and summary written
+figures and summary written
+figures and summary written
+figures and summary written

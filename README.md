@@ -24,6 +24,7 @@ Generative models of protein conformational ensembles are usually benchmarked ag
 2. **Generate ensembles.** Up to 500 conformations per protein from each of BioEmu, AlphaFlow, and AF2-MSA (via localcolabfold, run on QMUL's Apocrita HPC).
 3. **Cluster.** GROMOS/Daura neighbour-counting, gated by Hartigan's dip test for unimodality, so the pipeline doesn't fabricate spurious clusters on ensembles that are genuinely unimodal. The distance cutoff is chosen automatically from candidate valleys in a kernel density estimate of the pairwise-RMSD distribution, not fixed by hand.
 4. **Score.** Every conformation is scored against every experimental map with a resolution-matched, Gaussian-smoothed density-fit metric, normalised against how well the deposited structure itself fits.
+5. **Visualise.** Ensemble structure is shown by principal-component analysis of the Cα coordinates used for clustering (equivalent to classical MDS of the pairwise-RMSD matrix), coloured by cluster. PCA is used for visualisation only and does not influence cluster selection.
 
 ## Key findings
 
@@ -43,7 +44,7 @@ Generative models of protein conformational ensembles are usually benchmarked ag
   <em>SLC37A4 cross-comparison: the six depositions resolve into two structurally distinct groups, the structural-difference scale against which the generated ensembles are evaluated.</em>
 </p>
 
-**No method is uniformly superior across sampling, detection and recovery.** BioEmu produces the highest-scoring individual frame in every system, but this does not translate into uniformly stronger population-level recovery — its SLC37A4 ensemble fails to separate into states despite a best-frame density ratio of 0.92. AF2-MSA's most structurally diverse ensemble (AUX1, pairwise RMSD up to ~70 Å) was also its worst-fitting, showing that a broad spread of generated structures is not by itself evidence of meaningful conformational sampling.
+**No method is uniformly superior across sampling, detection and recovery.** BioEmu produces the highest-scoring individual frame in four of the five systems, but this does not translate into uniformly stronger population-level recovery; its SLC37A4 ensemble fails to separate into states despite a best-frame density ratio of 0.92. AF2-MSA's most structurally diverse ensemble (AUX1, pairwise RMSD up to ~70 Å) was also its worst-fitting, showing that a broad spread of generated structures is not by itself evidence of meaningful conformational sampling.
 
 ## Repository structure
 
@@ -52,11 +53,12 @@ Generative models of protein conformational ensembles are usually benchmarked ag
 02_build_dataset.py        # builds the final curated dataset table
 03_cross_comparison.py     # CCmask cross-validation of the reference structures
 04_fitting_bioemu.py       # BioEmu ensemble fitting
-04_fitting_msa.py          # MSA subsampling ensemble fitting
+04_fitting_msa.py          # AF2-MSA (shallow-MSA AlphaFold2) ensemble fitting
 04_fitting_alphaflow.py    # AlphaFlow ensemble fitting
 06_per_residue_density_analysis.py  # per-residue backbone-density difference panels for best-scoring frames
+07_coordinate_pca.py       # PCA of Cα coordinates per ensemble, coloured by cluster (results/coordinate_pca/)
 shared_fitting.py          # shared clustering / scoring / figure-generation logic
-results/                   # per-protein figures, cross-comparison matrices, best-fit structural renders
+results/                   # per-protein figures, cross-comparison matrices, coordinate PCA, best-fit structural renders
 ```
 
 ## Compute
@@ -65,4 +67,4 @@ All model generation and analysis ran on QMUL's Apocrita HPC (A100 80GB, SLURM),
 
 ## Author
 
-Qi Shang ([github.com/qshang237](https://github.com/qshang237)) — PhD, Queen Mary University of London.
+Qi Shang ([github.com/qshang237](https://github.com/qshang237)), PhD, Queen Mary University of London.

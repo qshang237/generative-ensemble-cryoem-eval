@@ -16,7 +16,6 @@ from scipy.stats import gaussian_kde
 from scipy.signal import find_peaks
 from scipy.ndimage import gaussian_filter
 from sklearn.metrics import silhouette_score
-from sklearn.decomposition import PCA
 from Bio import pairwise2
 import diptest
 import matplotlib.pyplot as plt
@@ -475,20 +474,12 @@ def make_figures(protein, n_exp, score_mat, labels, csizes, best_k, best_sil,
                        fontweight='bold')
         ax_d.legend(fontsize=7, markerscale=1.5)
     else:
-        pca      = PCA(n_components=2)
-        coords2d = pca.fit_transform(score_mat)
-        for c in range(best_k):
-            mask = labels == c
-            ax_d.scatter(coords2d[mask, 0], coords2d[mask, 1],
-                         c=[colors[c]], alpha=0.4, s=12,
-                         label=f'C{c}(n={csizes[c]})')
-        ax_d.set_xlabel(
-            f'PC1 ({pca.explained_variance_ratio_[0]*100:.0f}%)')
-        ax_d.set_ylabel(
-            f'PC2 ({pca.explained_variance_ratio_[1]*100:.0f}%)')
-        ax_d.set_title('C. PCA of density ratios\n(coloured by cluster)',
-                       fontweight='bold')
-        ax_d.legend(fontsize=7)
+        # More than two maps: no 2-D density-ratio view. Ensemble structure is
+        # visualised by PCA of the Cα coordinates in 07_coordinate_pca.py.
+        ax_d.axis('off')
+        ax_d.text(0.5, 0.5, 'C. Ensemble structure: see\n07_coordinate_pca.py\n'
+                  '(PCA of Cα coordinates)', ha='center', va='center',
+                  fontsize=10, transform=ax_d.transAxes)
 
     # D: Density ratio histogram per exp map
     ax_e = fig.add_subplot(gs[1, 0])
