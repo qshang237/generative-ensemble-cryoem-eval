@@ -19,3 +19,16 @@ __pycache__/
 
 # Regenerable intermediate arrays from 07_coordinate_pca.py
 results/coordinate_pca/cache/
+
+# Synthetic test ensembles (regenerable with 16_xyle_ensembles.py); PDB files downloaded from the RCSB
+synthetic_ensembles/
+download/
+
+# Regenerable intermediate files of 18_cc_mask.py and 20_q_score.py
+results/cc_mask/cache/
+results/cc_mask/parts/
+results/q_score/parts/
+
+# Not part of the public repository
+manuscript/
+analysis_qc/

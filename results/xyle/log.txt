@@ -1,0 +1,36 @@
+noise: lowest 30 ANM modes, median pairwise Calpha-RMSD within a state 1.0 A
+state      softest mode eigenvalue   5th / 50th / 95th pct of within-state RMSD (A)   s.d. of CA(i)-CA(i+1)   s.d. of C(i)-N(i+1)
+OUT_OPEN        0.127                 0.74 / 1.00 / 1.39  (0.74 and 1.39 x median)        0.09 A                 0.15 A
+4GBY            0.469                 0.77 / 0.99 / 1.27  (0.77 and 1.28 x median)        0.12 A                 0.16 A
+4JA3            0.687                 0.79 / 1.02 / 1.27  (0.78 and 1.25 x median)        0.11 A                 0.16 A
+4QIQ            0.607                 0.77 / 1.00 / 1.27  (0.77 and 1.27 x median)        0.11 A                 0.16 A
+IN_WIDE         0.130                 0.74 / 1.00 / 1.42  (0.74 and 1.42 x median)        0.09 A                 0.14 A
+
+XylE_uniform: frames per state OUT_OPEN 100, 4GBY 100, 4JA3 100, 4QIQ 100, IN_WIDE 100
+  median pairwise Calpha-RMSD between frames of two states (A); diagonal = within a state
+              OUT_OPEN      4GBY      4JA3      4QIQ   IN_WIDE
+  OUT_OPEN        0.97      3.18      5.65      5.98      7.34
+  4GBY            3.18      1.00      3.19      3.77      5.91
+  4JA3            5.65      3.19      1.00      2.05      4.32
+  4QIQ            5.98      3.77      2.05      1.00      3.14
+  IN_WIDE         7.34      5.91      4.32      3.14      1.00
+
+XylE_main: frames per state OUT_OPEN 25, 4GBY 100, 4JA3 100, 4QIQ 225, IN_WIDE 50
+  median pairwise Calpha-RMSD between frames of two states (A); diagonal = within a state
+              OUT_OPEN      4GBY      4JA3      4QIQ   IN_WIDE
+  OUT_OPEN        0.99      3.20      5.66      6.00      7.35
+  4GBY            3.20      0.99      3.19      3.77      5.91
+  4JA3            5.66      3.19      1.01      2.06      4.31
+  4QIQ            6.00      3.77      2.06      1.00      3.12
+  IN_WIDE         7.35      5.91      4.31      3.12      0.96
+
+XylE_skewed: frames per state OUT_OPEN 20, 4GBY 60, 4JA3 40, 4QIQ 350, IN_WIDE 30
+  median pairwise Calpha-RMSD between frames of two states (A); diagonal = within a state
+              OUT_OPEN      4GBY      4JA3      4QIQ   IN_WIDE
+  OUT_OPEN        0.93      3.09      5.53      5.91      7.30
+  4GBY            3.09      1.02      3.15      3.76      5.94
+  4JA3            5.53      3.15      1.00      2.07      4.35
+  4QIQ            5.91      3.76      2.07      1.03      3.16
+  IN_WIDE         7.30      5.94      4.35      3.16      1.00
+
+XylE_one_state: frames per state 4QIQ 500

@@ -1,0 +1,13 @@
+# Python 3.10. Versions of the environment in which the analysis was run.
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.3
+scikit-learn==1.7.2
+mdtraj==1.10.3
+gemmi==0.7.5
+biopython==1.88
+diptest==0.11.0
+matplotlib==3.10.9
+openpyxl==3.1.5
+# only for 01_dataset_curation.py (query of the EMDB)
+emdb

@@ -21,10 +21,13 @@ Generative models of protein conformational ensembles are usually benchmarked ag
 ## Method
 
 1. **Cross-validate the reference dataset first.** Before any generated ensemble is evaluated, every deposited structure within a protein is cross-compared against every other deposition's experimental map using masked cross-correlation (CCmask), superposed via a sequence-aligned common-Cα correspondence rather than by matching author-assigned residue numbers (robust to numbering offsets between structures). This establishes the experimentally anchored structural-difference scale that separates same-state controls from genuine transitions.
-2. **Generate ensembles.** Up to 500 conformations per protein from each of BioEmu, AlphaFlow, and AF2-MSA (via localcolabfold, run on QMUL's Apocrita HPC).
+2. **Generate ensembles.** 500 conformations are requested per protein from each of BioEmu (bioemu 1.4.0, checkpoint `bioemu-v1.1`), AlphaFlow (weights `alphaflow_md_base_202402.pt`) and AF2-MSA (ColabFold 1.6.1, AlphaFold2 model 1 with a subsampled MSA: `--max-seq 8 --max-extra-seq 16`, 500 seeds). BioEmu removes unphysical structures from its output, so its ensembles hold 335 to 490 frames. The commands and settings are in [`hpc/`](hpc/README.md).
 3. **Cluster.** GROMOS/Daura neighbour-counting, gated by Hartigan's dip test for unimodality, so the pipeline doesn't fabricate spurious clusters on ensembles that are genuinely unimodal. The distance cutoff is chosen automatically from candidate valleys in a kernel density estimate of the pairwise-RMSD distribution, not fixed by hand.
 4. **Score.** Every conformation is scored against every experimental map with a resolution-matched, Gaussian-smoothed density-fit metric, normalised against how well the deposited structure itself fits.
 5. **Visualise.** Ensemble structure is shown by principal-component analysis of the Cα coordinates used for clustering (equivalent to classical MDS of the pairwise-RMSD matrix), coloured by cluster. PCA is used for visualisation only and does not influence cluster selection.
+6. **Check the density ratio with other metrics.** Every conformation is also scored with three established metrics: Cα-RMSD to the deposited model (on the residues resolved in all deposited models of the protein), CC_mask (masked correlation between the map and a density simulated from the backbone at the map resolution, without B-factors) and the backbone Q-score (σ = 0.4 Å). The agreement of each metric with the density ratio is measured by the Spearman rank correlation over the frames of each ensemble and map.
+7. **Quantify state specificity.** For every cluster and every map of its protein: precision (the fraction of the frames of the cluster with a density ratio of at least 0.75 with this map) and recall (the fraction of all frames with a density ratio of at least 0.75 with this map that are in the cluster). A cluster that is specific to one state has a high precision for one map and a low precision for the others.
+8. **Validate the clustering externally.** The clustering procedure is applied, unchanged, to synthetic ensembles with known state labels. They are built on five states of the transporter XylE (three crystal structures, PDB 4GBY, 4JA3 and 4QIQ, and two designed open states), with three sets of state populations, a one-state control and three noise levels. The result is compared with the known labels by the adjusted Rand index.
 
 ## Key findings
 
@@ -57,13 +60,29 @@ Generative models of protein conformational ensembles are usually benchmarked ag
 04_fitting_alphaflow.py    # AlphaFlow ensemble fitting
 06_per_residue_density_analysis.py  # per-residue backbone-density difference panels for best-scoring frames
 07_coordinate_pca.py       # PCA of Cα coordinates per ensemble, coloured by cluster (results/coordinate_pca/)
+08_method_comparison_stats.py   # best frame, top 1 %, top 5 % and median density ratio per map and method, with bootstrap intervals
+09_state_specificity.py         # state label of every map; density ratio of every deposited model with every map (reference)
+14_xyle_states.py               # five XylE states for the external validation of the clustering
+16_xyle_ensembles.py            # synthetic XylE ensembles with known state labels
+17_rmsd_to_deposited.py         # Cα-RMSD of every frame to every deposited model
+18_cc_mask.py                   # CC_mask of every frame with every map
+20_q_score.py                   # backbone Q-score of every frame with every map
+19_metric_summary.py            # all metrics in one table: rank agreement with the density ratio, best frame, frames per state
+24_cluster_precision_recall.py  # precision and recall of every cluster with every map
+25_fig_other_metrics.py         # figure: CC_mask and Q-score of each cluster, agreement with the density ratio
+26_fig_precision_recall.py      # figures: precision and recall of the clusters (state specificity)
+27_xyle_external_validation.py  # clustering of the XylE ensembles, compared with the known states
 shared_fitting.py          # shared clustering / scoring / figure-generation logic
-results/                   # per-protein figures, cross-comparison matrices, coordinate PCA, best-fit structural renders
+hpc/                       # job scripts and settings of the ensemble generation
+requirements.txt           # Python packages of the analysis
+results/                   # per-protein figures, cross-comparison matrices, coordinate PCA, best-fit structural renders, metric tables
 ```
+
+Not stored in the repository: the generated ensembles and the EMDB maps (large files), the synthetic XylE ensembles (written by `16_xyle_ensembles.py`), and the three XylE structures, which `14_xyle_states.py` reads from `download/4GBY.pdb`, `download/4JA3.pdb` and `download/4QIQ.pdb` (RCSB PDB).
 
 ## Compute
 
-All model generation and analysis ran on QMUL's Apocrita HPC (A100 80GB, SLURM), not any external cloud service.
+The ensembles were generated on QMUL's Apocrita HPC (A100 80GB, SLURM). The multiple sequence alignments for BioEmu and AF2-MSA came from the public ColabFold MMseqs2 server; the structure generation itself ran on the cluster. The analysis scripts run on a workstation; the two slow steps (`18_cc_mask.py`, `20_q_score.py`) can be stopped and started again.
 
 ## Author
 

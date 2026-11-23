@@ -1,0 +1,102 @@
+B=5000, B_eqn=2000, seed=20261113
+
+   stat  maps_first_BioEmu  maps_first_AF2-MSA  proteins_first_BioEmu  proteins_first_AF2-MSA  maps_first_AlphaFlow  proteins_first_AlphaFlow
+    max                 11                   4                      4                       1                   0.0                       0.0
+max_eqn                 11                   4                      4                       1                   0.0                       0.0
+   top1                 12                   3                      3                       2                   0.0                       0.0
+   top5                 10                   3                      4                       1                   2.0                       0.0
+ median                  6                   2                      3                       1                   7.0                       1.0
+
+   stat          comparison  mean_over_proteins     lo    hi  proteins_positive  proteins_ci_above_0  proteins_ci_below_0
+    max  BioEmu - AlphaFlow               0.044    NaN   NaN                  5                    0                    0
+    max    BioEmu - AF2-MSA               0.090    NaN   NaN                  4                    0                    0
+    max AlphaFlow - AF2-MSA               0.046    NaN   NaN                  2                    0                    0
+max_eqn  BioEmu - AlphaFlow               0.045    NaN   NaN                  5                    0                    0
+max_eqn    BioEmu - AF2-MSA               0.092    NaN   NaN                  4                    0                    0
+max_eqn AlphaFlow - AF2-MSA               0.047    NaN   NaN                  2                    0                    0
+   top1  BioEmu - AlphaFlow               0.044  0.038 0.051                  5                    5                    0
+   top1    BioEmu - AF2-MSA               0.102  0.090 0.121                  3                    3                    0
+   top1 AlphaFlow - AF2-MSA               0.058  0.046 0.077                  2                    2                    2
+   top5  BioEmu - AlphaFlow               0.042  0.036 0.047                  5                    5                    0
+   top5    BioEmu - AF2-MSA               0.130  0.116 0.143                  4                    3                    1
+   top5 AlphaFlow - AF2-MSA               0.088  0.075 0.101                  3                    2                    2
+ median  BioEmu - AlphaFlow              -0.004 -0.013 0.002                  3                    3                    1
+ median    BioEmu - AF2-MSA               0.116  0.106 0.129                  4                    4                    1
+ median AlphaFlow - AF2-MSA               0.120  0.114 0.133                  3                    3                    1
+
+         protein    stat  n_maps          comparison   diff     lo     hi excludes_zero
+AuxinTransporter     max       2  BioEmu - AlphaFlow  0.014    NaN    NaN           NaN
+AuxinTransporter max_eqn       2  BioEmu - AlphaFlow  0.015    NaN    NaN           NaN
+AuxinTransporter    top1       2  BioEmu - AlphaFlow  0.015  0.007  0.022          True
+AuxinTransporter    top5       2  BioEmu - AlphaFlow  0.012  0.005  0.019          True
+AuxinTransporter  median       2  BioEmu - AlphaFlow  0.014  0.010  0.017          True
+AuxinTransporter     max       2    BioEmu - AF2-MSA  0.166    NaN    NaN           NaN
+AuxinTransporter max_eqn       2    BioEmu - AF2-MSA  0.174    NaN    NaN           NaN
+AuxinTransporter    top1       2    BioEmu - AF2-MSA  0.219  0.172  0.311          True
+AuxinTransporter    top5       2    BioEmu - AF2-MSA  0.366  0.305  0.423          True
+AuxinTransporter  median       2    BioEmu - AF2-MSA  0.515  0.512  0.519          True
+AuxinTransporter     max       2 AlphaFlow - AF2-MSA  0.152    NaN    NaN           NaN
+AuxinTransporter max_eqn       2 AlphaFlow - AF2-MSA  0.159    NaN    NaN           NaN
+AuxinTransporter    top1       2 AlphaFlow - AF2-MSA  0.204  0.157  0.296          True
+AuxinTransporter    top5       2 AlphaFlow - AF2-MSA  0.354  0.294  0.412          True
+AuxinTransporter  median       2 AlphaFlow - AF2-MSA  0.502  0.498  0.504          True
+            GPR4     max       2  BioEmu - AlphaFlow  0.039    NaN    NaN           NaN
+            GPR4 max_eqn       2  BioEmu - AlphaFlow  0.040    NaN    NaN           NaN
+            GPR4    top1       2  BioEmu - AlphaFlow  0.034  0.026  0.041          True
+            GPR4    top5       2  BioEmu - AlphaFlow  0.037  0.030  0.043          True
+            GPR4  median       2  BioEmu - AlphaFlow  0.074  0.070  0.079          True
+            GPR4     max       2    BioEmu - AF2-MSA  0.000    NaN    NaN           NaN
+            GPR4 max_eqn       2    BioEmu - AF2-MSA  0.002    NaN    NaN           NaN
+            GPR4    top1       2    BioEmu - AF2-MSA -0.001 -0.011  0.011         False
+            GPR4    top5       2    BioEmu - AF2-MSA  0.006 -0.001  0.011         False
+            GPR4  median       2    BioEmu - AF2-MSA  0.023  0.018  0.028          True
+            GPR4     max       2 AlphaFlow - AF2-MSA -0.038    NaN    NaN           NaN
+            GPR4 max_eqn       2 AlphaFlow - AF2-MSA -0.038    NaN    NaN           NaN
+            GPR4    top1       2 AlphaFlow - AF2-MSA -0.034 -0.042 -0.024          True
+            GPR4    top5       2 AlphaFlow - AF2-MSA -0.031 -0.038 -0.024          True
+            GPR4  median       2 AlphaFlow - AF2-MSA -0.051 -0.058 -0.045          True
+           GltPh     max       3  BioEmu - AlphaFlow  0.090    NaN    NaN           NaN
+           GltPh max_eqn       3  BioEmu - AlphaFlow  0.090    NaN    NaN           NaN
+           GltPh    top1       3  BioEmu - AlphaFlow  0.091  0.080  0.102          True
+           GltPh    top5       3  BioEmu - AlphaFlow  0.091  0.082  0.100          True
+           GltPh  median       3  BioEmu - AlphaFlow  0.018  0.010  0.024          True
+           GltPh     max       3    BioEmu - AF2-MSA  0.080    NaN    NaN           NaN
+           GltPh max_eqn       3    BioEmu - AF2-MSA  0.081    NaN    NaN           NaN
+           GltPh    top1       3    BioEmu - AF2-MSA  0.088  0.076  0.102          True
+           GltPh    top5       3    BioEmu - AF2-MSA  0.093  0.083  0.104          True
+           GltPh  median       3    BioEmu - AF2-MSA  0.117  0.098  0.129          True
+           GltPh     max       3 AlphaFlow - AF2-MSA -0.009    NaN    NaN           NaN
+           GltPh max_eqn       3 AlphaFlow - AF2-MSA -0.009    NaN    NaN           NaN
+           GltPh    top1       3 AlphaFlow - AF2-MSA -0.002 -0.015  0.011         False
+           GltPh    top5       3 AlphaFlow - AF2-MSA  0.001 -0.008  0.012         False
+           GltPh  median       3 AlphaFlow - AF2-MSA  0.100  0.082  0.111          True
+         SLC37A4     max       6  BioEmu - AlphaFlow  0.052    NaN    NaN           NaN
+         SLC37A4 max_eqn       6  BioEmu - AlphaFlow  0.052    NaN    NaN           NaN
+         SLC37A4    top1       6  BioEmu - AlphaFlow  0.051  0.030  0.073          True
+         SLC37A4    top5       6  BioEmu - AlphaFlow  0.043  0.025  0.058          True
+         SLC37A4  median       6  BioEmu - AlphaFlow -0.029 -0.064  0.001         False
+         SLC37A4     max       6    BioEmu - AF2-MSA  0.223    NaN    NaN           NaN
+         SLC37A4 max_eqn       6    BioEmu - AF2-MSA  0.223    NaN    NaN           NaN
+         SLC37A4    top1       6    BioEmu - AF2-MSA  0.217  0.196  0.237          True
+         SLC37A4    top5       6    BioEmu - AF2-MSA  0.204  0.186  0.220          True
+         SLC37A4  median       6    BioEmu - AF2-MSA  0.040  0.004  0.102          True
+         SLC37A4     max       6 AlphaFlow - AF2-MSA  0.171    NaN    NaN           NaN
+         SLC37A4 max_eqn       6 AlphaFlow - AF2-MSA  0.171    NaN    NaN           NaN
+         SLC37A4    top1       6 AlphaFlow - AF2-MSA  0.165  0.147  0.185          True
+         SLC37A4    top5       6 AlphaFlow - AF2-MSA  0.162  0.149  0.173          True
+         SLC37A4  median       6 AlphaFlow - AF2-MSA  0.068  0.046  0.127          True
+           SPNS2     max       2  BioEmu - AlphaFlow  0.027    NaN    NaN           NaN
+           SPNS2 max_eqn       2  BioEmu - AlphaFlow  0.028    NaN    NaN           NaN
+           SPNS2    top1       2  BioEmu - AlphaFlow  0.030  0.011  0.048          True
+           SPNS2    top5       2  BioEmu - AlphaFlow  0.026  0.003  0.046          True
+           SPNS2  median       2  BioEmu - AlphaFlow -0.099 -0.126 -0.084          True
+           SPNS2     max       2    BioEmu - AF2-MSA -0.020    NaN    NaN           NaN
+           SPNS2 max_eqn       2    BioEmu - AF2-MSA -0.019    NaN    NaN           NaN
+           SPNS2    top1       2    BioEmu - AF2-MSA -0.013 -0.033  0.002         False
+           SPNS2    top5       2    BioEmu - AF2-MSA -0.019 -0.040 -0.000          True
+           SPNS2  median       2    BioEmu - AF2-MSA -0.115 -0.142 -0.091          True
+           SPNS2     max       2 AlphaFlow - AF2-MSA -0.047    NaN    NaN           NaN
+           SPNS2 max_eqn       2 AlphaFlow - AF2-MSA -0.046    NaN    NaN           NaN
+           SPNS2    top1       2 AlphaFlow - AF2-MSA -0.044 -0.063 -0.026          True
+           SPNS2    top5       2 AlphaFlow - AF2-MSA -0.045 -0.064 -0.026          True
+           SPNS2  median       2 AlphaFlow - AF2-MSA -0.016 -0.029  0.007         False
